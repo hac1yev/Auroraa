@@ -32,3 +32,42 @@ If you are developing a production application, we recommend enabling type-aware
 ```
 
 See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+
+
+User submits personal details
+UIN and other personal information.
+Uploads passport/ID images.
+Check temporary OCR block
+If the user is blocked, reject the request with 429.
+Block duration: 1 hour.
+Limit OCR requests
+Maximum 5 OCR requests per hour per UIN.
+On the 6th request, block the user for 1 hour.
+Limit failed document attempts
+Maximum 3 failed document-processing attempts.
+Retry counter is stored for 24 hours.
+After reaching the limit, return 423 Locked.
+Process the document
+Send uploaded document images to the OCR/Textract service.
+Extract required identity fields.
+Handle unsupported documents
+If the document cannot be recognized, return 400 DOCUMENT_NOT_RECOGNIZED.
+Tell the user to upload a passport or ID card.
+Handle OCR service failures
+Service unavailable → 503
+Timeout → 504
+Incomplete OCR data → 500
+Unexpected error → 500
+Compare OCR data with manually entered data
+Compare extracted fields against PersonalDetailsDto.
+If they don't match, return 400 MISMATCH.
+Include the mismatched fields.
+Reset document retry counter after success
+Successful verification deletes the document retry counter.
+Generate registration token
+Generate a unique UUID after successful verification.
+Store consent
+Save:
+registration token
+consent timestamp
+personal details
