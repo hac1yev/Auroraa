@@ -38,6 +38,11 @@ export class RegistrationController {
   @ApiBody({
     type: PersonalDetailsDto,
   })
+  @ApiResponse({
+    status: 200,
+    description: 'Personal details and consent stored successfully in Redis. Registration token returned.',
+    type: RegistrationStepOneResponseDto,
+  })
   @HttpCode(200)
   handleStepOne(@Body() body: PersonalDetailsDto) {
     return this.registrationService.handlePersonalDetailsStep(body);
@@ -67,8 +72,7 @@ export class RegistrationController {
   @ApiResponse({
     status: 200,
     description:
-      'Files passed validation. Registration data stored successfully in Redis.',
-    type: RegistrationStepOneResponseDto,
+      'Files passed validation. Registration data stored successfully in Redis.'
   })
   @UseInterceptors(FilesInterceptor('files', 2))
   handlePassportOcr(
