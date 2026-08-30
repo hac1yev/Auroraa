@@ -1,5 +1,16 @@
 import { Injectable } from '@nestjs/common';
 import OpenAI from 'openai';
+import { z } from 'zod';
+
+const PassportInfoSchema = z.object({
+  firstName: z.string(),
+  lastName: z.string(),
+  passportNumber: z.string(),
+  birthDate: z.string(),
+  citizenship: z.string(),
+});
+
+type PassportInfo = z.infer<typeof PassportInfoSchema>;
 
 @Injectable()
 export class AiService {
@@ -7,11 +18,11 @@ export class AiService {
 
   constructor() {
     this.openai = new OpenAI({
-      apiKey: process.env.OPENAI_API_KEY,
+      apiKey: process.env.OPENAI_API_KEY!,
     });
   }
 
-  async extractPassportInfo(text: string) {
+  async extractPassportInfo(text: string): Promise<PassportInfo> {
     const response = await this.openai.responses.create({
       model: 'gpt-4o-mini',
       input: `
@@ -29,13 +40,13 @@ export class AiService {
       `,
     });
 
-    const cleared = JSON.parse(
-      response.output_text
-        .replace(/^```json\s*/i, '')
-        .replace(/\s*```$/i, '')
-        .trim(),
-    );
+    const cleared: string = response.output_text
+      .replace(/^```json\s*/i, '')
+      .replace(/\s*```$/i, '')
+      .trim();
 
-    return cleared;
+    const parsed: unknown = JSON.parse(cleared);
+
+    return PassportInfoSchema.parse(parsed);
   }
 }

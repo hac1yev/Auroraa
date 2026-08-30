@@ -24,10 +24,10 @@ export class UploadValidationPipe implements PipeTransform {
   });
 
   async transform(fileOrFiles: Express.Multer.File | Express.Multer.File[]) {
-    // Handle multiple file uploads (array of files)    
+    // Handle multiple file uploads (array of files)
     if (Array.isArray(fileOrFiles)) {
       const files = fileOrFiles;
-    
+
       if (!files || files.length === 0) {
         throw new BadRequestException(
           'The selected file is empty. Please choose another file and try again.',
@@ -77,8 +77,10 @@ export class UploadValidationPipe implements PipeTransform {
       : false;
     const ext = originalName.includes('.')
       ? originalName.substring(originalName.lastIndexOf('.')).toLowerCase()
-      : '';    
-    const extOk = ext ? ALLOWED_EXTENSION.some((type) => type.endsWith(ext)) : false;    
+      : '';
+    const extOk = ext
+      ? ALLOWED_EXTENSION.some((type) => type.endsWith(ext))
+      : false;
 
     if (!mimeOk || !extOk) {
       throw new UnsupportedMediaTypeException({

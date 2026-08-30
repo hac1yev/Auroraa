@@ -13,10 +13,8 @@ export const dataSource = new DataSource({
   database: config.database,
 
   // Fix: Explicitly point to src for development AND dist for production
-  entities: [
-    __dirname + '/../modules/**/*.entity.{js,ts}'
-  ],
-  
+  entities: [__dirname + '/../modules/**/*.entity.{js,ts}'],
+
   // Also ensure your migrations path points correctly
   migrations: [__dirname + '/../database/migrations/*.{js,ts}'],
 

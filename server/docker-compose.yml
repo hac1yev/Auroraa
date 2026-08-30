@@ -1,6 +1,24 @@
 version: '3.9'
 
 services:
+  nestjs:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: nestjs_container
+    restart: always
+    ports:
+      - '3000:3000'
+    env_file:
+      - .env.docker
+    volumes:
+      - .:/app
+      - /app/node_modules
+    command: npm run start:dev
+    depends_on:
+      - postgres
+      - redis
+
   postgres:
     image: postgres:16
     container_name: postgres_container
@@ -13,7 +31,7 @@ services:
       POSTGRES_DB: ${DB_NAME}
     volumes:
       - postgres_data:/var/lib/postgresql/data
- 
+
   pgadmin:
     image: dpage/pgadmin4
     container_name: pgadmin_container
@@ -25,14 +43,14 @@ services:
       PGADMIN_DEFAULT_PASSWORD: ${PG_ADMIN_PASSWORD}
     depends_on:
       - postgres
-  
+
   redis:
     container_name: redis_container
     image: redis:7-alpine
     restart: always
     ports:
       - '6379:6379'
-    command: ["redis-server", "--save", "", "--appendonly", "no"]
+    command: ['redis-server', '--save', '', '--appendonly', 'no']
     volumes: []
 
 volumes:

@@ -12,7 +12,7 @@ import { IsValidDate } from 'src/shared/validators/isValidDate.validator';
 
 export class PersonalDetailsDto {
   @ApiProperty({
-    example: 'Ilkin'
+    example: 'Ilkin',
   })
   @IsNotEmpty()
   @IsString()
@@ -20,7 +20,7 @@ export class PersonalDetailsDto {
   firstName!: string;
 
   @ApiProperty({
-    example: 'Haciyev'
+    example: 'Haciyev',
   })
   @IsNotEmpty()
   @IsString()
@@ -28,7 +28,7 @@ export class PersonalDetailsDto {
   lastName!: string;
 
   @ApiProperty({
-    example: '1990-01-01'
+    example: '1990-01-01',
   })
   @IsNotEmpty()
   @Type(() => Date)
@@ -37,21 +37,21 @@ export class PersonalDetailsDto {
   birthDate!: Date;
 
   @ApiProperty({
-    example: 'Azerbaijan'
+    example: 'Azerbaijan',
   })
   @IsNotEmpty()
   @IsString()
   citizenship!: string;
 
   @ApiProperty({
-    example: '123456789012'
+    example: '123456789012',
   })
   @IsNotEmpty()
   @IsString()
   passportNumber!: string;
 
   @ApiProperty({
-    example: true
+    example: true,
   })
   @IsNotEmpty()
   @Transform(({ value }) => {

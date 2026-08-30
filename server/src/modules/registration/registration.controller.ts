@@ -40,7 +40,8 @@ export class RegistrationController {
   })
   @ApiResponse({
     status: 200,
-    description: 'Personal details and consent stored successfully in Redis. Registration token returned.',
+    description:
+      'Personal details and consent stored successfully in Redis. Registration token returned.',
     type: RegistrationStepOneResponseDto,
   })
   @HttpCode(200)
@@ -56,7 +57,7 @@ export class RegistrationController {
   })
   @ApiConsumes('multipart/form-data')
   @ApiBody({
-    type: RegistrationFilesDto
+    type: RegistrationFilesDto,
   })
   @ApiPayloadTooLargeResponse({
     description: 'This file is too large. The maximum size allowed is 10MB',
@@ -72,7 +73,7 @@ export class RegistrationController {
   @ApiResponse({
     status: 200,
     description:
-      'Files passed validation. Registration data stored successfully in Redis.'
+      'Files passed validation. Registration data stored successfully in Redis.',
   })
   @UseInterceptors(FilesInterceptor('files', 2))
   handlePassportOcr(

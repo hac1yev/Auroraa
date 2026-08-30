@@ -2,27 +2,24 @@ import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 
 @Entity('users')
 export class User {
-    @PrimaryGeneratedColumn()
-    id!: number;
+  @PrimaryGeneratedColumn()
+  id!: number;
 
-    @Column()
-    firstName!: string;
+  @Column()
+  firstName!: string;
 
-    @Column()
-    lastName!: string;
+  @Column()
+  lastName!: string;
 
-    @Column({ type: 'date' }) // database handles it properly
-    birthDate!: Date;
+  @Column({ type: 'date' }) // database handles it properly
+  birthDate!: Date;
 
-    @Column()
-    citizenship!: string;
+  @Column()
+  citizenship!: string;
 
-    @Column()
-    passportNumber!: string;
+  @Column()
+  passportNumber!: string;
 
-    @Column()
-    consent!: boolean;
-
-    @Column()
-    passportImage!: string;
+  @Column()
+  consent!: boolean;
 }

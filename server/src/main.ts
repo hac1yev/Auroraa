@@ -15,19 +15,22 @@ async function bootstrap() {
   );
 
   const swaggerConfig = new DocumentBuilder()
-    .setTitle("TaskZen Management")
-    .setDescription("TaskZend API Description")
-    .setVersion("1.0")
-    .addTag("TaskZen")
+    .setTitle('TaskZen Management')
+    .setDescription('TaskZend API Description')
+    .setVersion('1.0')
+    .addTag('TaskZen')
     .addBearerAuth(
       { type: 'http', scheme: 'bearer', bearerFormat: 'JWT' },
       'access-token',
     )
     .build();
-  
+
   const document = SwaggerModule.createDocument(app, swaggerConfig);
   SwaggerModule.setup('/api/v1/openapi', app, document);
 
   await app.listen(process.env.PORT ?? 3000);
 }
-bootstrap();
+bootstrap().catch((err) => {
+  console.error(err);
+  process.exit(1);
+});

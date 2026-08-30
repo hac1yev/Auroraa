@@ -10,7 +10,7 @@ import { RedisModule } from './shared/modules/redis/redis.module';
   imports: [
     ConfigModule.forRoot({
       isGlobal: true, // without this we have to import ConfigModule inside every Module
-      envFilePath: `.env.${process.env.NODE_ENV || 'development'}`
+      envFilePath: `.env.${process.env.NODE_ENV || 'development'}`,
     }),
     RegistrationModule,
     DatabaseModule,

@@ -16,12 +16,8 @@ export class RegistrationService {
     private ocrService: OcrService,
   ) {}
 
-  async handlePersonalDetailsStep(body: PersonalDetailsDto) {
-    try {
-      
-    } catch (error) {
-      
-    }
+  handlePersonalDetailsStep(body: PersonalDetailsDto) {
+    console.log(body);
   }
 
   async getPassportInfoFromOcr(files: UploadedFileLike[]) {
@@ -30,6 +26,7 @@ export class RegistrationService {
       return res;
     } catch (error) {
       throw new InternalServerErrorException(
+        error,
         'Failed to extract passport information from OCR',
       );
     }

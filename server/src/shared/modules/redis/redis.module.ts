@@ -13,11 +13,11 @@ import Redis from 'ioredis';
           port: Number(process.env.REDIS_PORT) || 6379,
           // password: process.env.REDIS_PASSWORD, // in production password usage is mandatory
           retryStrategy: (times) => Math.min(times * 500, 2000),
-        })
-      }
+        });
+      },
     },
-    RedisService
+    RedisService,
   ],
-  exports: [RedisService]
+  exports: [RedisService],
 })
 export class RedisModule {}
