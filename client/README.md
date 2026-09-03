@@ -34,6 +34,17 @@ If you are developing a production application, we recommend enabling type-aware
 See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
 
 
+REQUIREMENTS OF AURORABANK
+
+| Step  | Name                  | Main fields                                                     |
+| ----- | --------------------- | --------------------------------------------------------------- |
+| **1** | Personal Details      | First name, last name, birth date, passport number, citizenship |
+| **2** | Contact Details       | Phone number, email                                             |
+| **3** | Address Details       | Country, city, address, postal code                             |
+| **4** | Identity Verification | Passport/ID upload, OCR, selfie/verification if required        |
+| **5** | Security              | Password, confirm password                                      |
+
+
 User submits personal details
 UIN and other personal information.
 Uploads passport/ID images.
