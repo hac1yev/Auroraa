@@ -1,4 +1,4 @@
-import { RegistrationStepper } from "./pages/Registration/Stepper"
+import { RegistrationStepper } from "./pages/Registration"
 
 export const App = () => {
   return (

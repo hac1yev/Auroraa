@@ -4,6 +4,7 @@ const theme = createTheme({
   cssVariables: {
     colorSchemeSelector: 'class',
   },
+  defaultColorScheme: 'dark',
   colorSchemes: {
     light: {
       palette: {
@@ -85,8 +86,8 @@ const theme = createTheme({
           dark: '#059669',
         },
         background: {
-          default: '#09090b',
-          paper: '#18181b',
+          default: '#0C1729',
+          paper: '#081120',
         },
         text: {
           primary: '#fafafa',

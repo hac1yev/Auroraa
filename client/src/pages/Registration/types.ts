@@ -1,7 +1,9 @@
+import type { Dayjs } from "dayjs";
+
 export interface IPersonalDetails {
     firstName: string;
     lastName: string;
-    birthDate: string;
+    birthDate: Dayjs;
     citizenship: string;
     passportNumber: string;
     consent: boolean;
